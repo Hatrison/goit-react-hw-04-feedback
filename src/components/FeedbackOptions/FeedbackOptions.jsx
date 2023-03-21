@@ -1,25 +1,22 @@
 import PropTypes from 'prop-types';
 import FeedbackOption from 'components/FeedbackOption';
-import { Component } from 'react';
 import { OptionsList } from './FeedbackOptions.styled';
 
-export default class FeedbackOptions extends Component {
-  static propTypes = {
-    options: PropTypes.array.isRequired,
-    onLeaveFeedback: PropTypes.func.isRequired,
-  };
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
+  return (
+    <OptionsList>
+      {options.map((option, index) => (
+        <li key={index}>
+          <FeedbackOption text={option} onLeaveFeedback={onLeaveFeedback} />
+        </li>
+      ))}
+    </OptionsList>
+  );
+};
 
-  render() {
-    const { options, onLeaveFeedback } = this.props;
+FeedbackOptions.propTypes = {
+  options: PropTypes.array.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
-    return (
-      <OptionsList>
-        {options.map((option, index) => (
-          <li key={index}>
-            <FeedbackOption text={option} onLeaveFeedback={onLeaveFeedback} />
-          </li>
-        ))}
-      </OptionsList>
-    );
-  }
-}
+export default FeedbackOptions;

@@ -1,16 +1,13 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
 import { Button } from './FeedbackOption.styled';
 
-export default class FeedbackOption extends Component {
-  static propTypes = {
-    text: PropTypes.string.isRequired,
-    onLeaveFeedback: PropTypes.func.isRequired,
-  };
+const FeedbackOption = ({ text, onLeaveFeedback }) => {
+  return <Button onClick={() => onLeaveFeedback(text)}>{text}</Button>;
+};
 
-  render() {
-    const { text, onLeaveFeedback } = this.props;
+FeedbackOption.propTypes = {
+  text: PropTypes.string.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
+};
 
-    return <Button onClick={() => onLeaveFeedback(text)}>{text}</Button>;
-  }
-}
+export default FeedbackOption;
